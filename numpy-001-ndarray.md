@@ -176,6 +176,124 @@ print(a[:, 1]) # [12, 17, 22, 27, 32]
 
 
 
+## ndarray属性
+
+array properties(接上面的二维数组)
+
+```python
+print(type(a)) # <class 'numpy.ndarray'>
+print(a.size) # 25
+print(a.itemsize) # 8
+print(a.nbytes) # 200 -> 4bytes(itemsize * size)
+print(a.dtype) # 'int64' 64bit integer
+print(a.shape) # (5, 5)
+print(a.ndim) # 2
+```
+
+正如你在上面的代码中看到的，NumPy数组实际上被称为ndarray。我不知道为什么他妈的它叫ndarray，如果有人知道请留言！我猜它代表n维数组 -> (N-dimensional)。
+
+数组的形状是它有多少行和列，上面的数组有5行和5列，所以它的形状是(5，5)。
+
+`itemsize`属性是每个项()占用的字节数。这个数组的数据类型是int 64，一个int 64中有64位，一个字节中有8位，除以64除以8，你就可以得到它占用了多少字节，在本例中是8。
+
+`ndim`属性是数组的维数。这个有2个。例如，向量只有1。
+
+`nbytes` 属性是数组中的所有数据消耗掉的字节数。你应该注意到，这并不计算数组的开销，因此数组占用的实际空间将稍微大一点。
+
+
+
+## ndarray的基本操作
+
+```python
+import numpy as np
+
+# create empty ndarray (2d)
+a = np.arange(25)      # create 1D array
+a = a.reshape((5, 5))  # one Dismensional reshape to twd D
+
+"""
+a:
+[[ 0  1  2  3  4]
+ [ 5  6  7  8  9]
+ [10 11 12 13 14]
+ [15 16 17 18 19]
+ [20 21 22 23 24]]
+"""
+
+b = np.array([10, 62, 1, 14, 2, 
+              56, 79, 2, 1, 45,
+              4, 92, 5, 55, 63, 
+              43, 35, 6, 53, 24,
+              56, 3, 56, 44, 78])
+b = b.reshape((5,5))
+
+print(a.dtype)
+print(b.dtype)
+
+# basic operator
+print(a + b)    # add
+print(a - b)    # sub
+print(a * b)    # mul
+print(b / a)    # div
+print(a ** b)   # pow
+print(a > b)    # show True or False in orignal structor
+print(a < b)
+print(a.dot(b)) # vector operator 向量运算（点积）
+```
+
+其他操作
+
+```python
+import numpy as np
+
+# create empty ndarray (2d)
+a = np.arange(25)      # create 1D array
+a = a.reshape((5, 5))  # one Dismensional reshape to twd D
+
+"""
+a:
+[[ 0  1  2  3  4]
+ [ 5  6  7  8  9]
+ [10 11 12 13 14]
+ [15 16 17 18 19]
+ [20 21 22 23 24]]
+"""
+
+b = np.array([10, 62, 1, 14, 2, 
+              56, 79, 2, 1, 45,
+              4, 92, 5, 55, 63, 
+              43, 35, 6, 53, 24,
+              56, 3, 56, 44, 78])
+b = b.reshape((5,5))
+
+print(a.dtype)
+print(b.dtype)
+
+# basic operator
+print(a + b)    # add
+print(a - b)    # sub
+print(a * b)    # mul
+print(b / a)    # div
+print(a ** b)   # pow
+print(a > b)    # show True or False in orignal structor
+print(a < b)
+print(a.dot(b))
+
+print(a.sum()) # 300
+print(b.sum()) # 889 对所有的item进行求和
+print(b.min()) # 找出该数组中的最小的一个元素
+print(b.max()) # 找出该数组中的最大的一个元素
+c = b.cumsum()
+print(c)
+print(len(c))
+```
+
+
+
+## 案例
+
+bilibili -> planguage_unfix.csv
+
 
 
 
