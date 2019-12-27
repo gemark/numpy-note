@@ -71,6 +71,23 @@ Python的一种科学计算工具
     ![image-20191227104654985](assets/image-20191227104654985.png)
 
 ```python
+# 一维与二维数组的问题
+one_d_array = [0, 1, 2, 3, 4, 5]
+
+two_d_array = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+t = one_d_array[3]
+#               x: coord(index)
+
+e = two_d_array[2][1]
+#               y  x  y:row x:column
+```
+
+```python
 # 三维数组的维度问题
 import numpy as np
 
@@ -93,10 +110,14 @@ three_d_array = [
     ],
 ]
 b = three_d_array[2][0][1]
-#z  y  x
+#                 z  y  x
 # 上述代码，由于第3层中的数据是文本类型（str），所以在转换为ndarray后，无法参与正常的运算
 # 因为numpy.ndarray是需要保证数组中的所有元素必须是相同的数据类型
 ```
+
+
+
+
 
 
 
