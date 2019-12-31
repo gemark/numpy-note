@@ -30,7 +30,7 @@ np.round(stock_day_rise[:2, :20], 4)
 
 
 
-## 常用的ndarray的访问方式：
+## 常用的ndarray的访问方式（多维切片）：
 
 ```python
 # 访问第10到100支股票的， 100到150天的涨跌幅数据
@@ -38,4 +38,29 @@ print(stock_day_rise[99:150, 9:100])
 print(stock_day_rise[:, 98])
 print(stock_day_rise[::2, 9])
 ```
+
+
+
+## numpy统计运算
+
+| 统计方法     | 描述                    |
+| ------------ | ----------------------- |
+| numpy.max()  | 统计数组中最大的item    |
+| numpy.min()  | 统计数组中最小的item    |
+| numpy.mean() | 统计数组中items的均值   |
+| numpy.var()  | 统计数组中items的方差   |
+| numpy.std()  | 统计数组中items的标准差 |
+| numpy.cov()  | 统计矩阵中的协方差      |
+| np.argmax()  | 统计最大值的item的索引  |
+| np.argmin()  | 统计最小值的item的索引  |
+
+
+
+​	
+
+​	
+
+
+
+
 
