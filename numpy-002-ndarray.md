@@ -56,7 +56,66 @@ print(stock_day_rise[::2, 9])
 
 
 
-​	
+## 运算
+
+```python
+students_score = np.array([
+    [80,86],
+    [82,80],
+    [85,78],
+    [90,90],
+    [86,82],
+    [82,90],
+    [78,80],
+    [92,94]
+])
+
+students_score_mat = np.mat(students_score) # numpy中matrix必须是二维的
+print(np.matmul(students_score, np.array([[0.7], [0.3]])))
+```
+
+结果：
+
+```python
+[[81.8]
+ [81.4]
+ [82.9]
+ [90. ]
+ [84.8]
+ [84.4]
+ [78.6]
+ [92.6]]
+```
+
+运算例子：
+
+```python
+# 数组与数的运算
+arr = np.array([[1,2,3,2,1,4], [5,6,1,2,3,1]])
+print(arr + 1)
+print(arr / 2)
+
+# 数组与数的运算中，当一个一维数组乘以3
+a = [1,2,3,4,5]
+print(a * 3) # 类似于字符串的乘法
+print('abc'*3) # 对于数组的乘法，相当于重复repeat
+
+# arr1 = np.array([[1,2,3,2,1,4], [5,6,1,2,3,1]])
+# arr2 = np.array([[1, 2, 3, 4], [3, 4, 5, 6]])
+
+arr1 = np.array([[1, 2, 3, 2], [5, 6, 1, 2]])
+arr2 = np.array([[1, 2], [3, 2]]) # 4x4 cant mul 2x2
+
+# print(arr1 * arr2) # 两个数组相乘时，shape必须一致
+
+arr3 = np.array([[5], [4]]) # 可以相乘 4x4 mul 2x1 its ok
+print(arr1 * arr3)
+
+arr4 = np.array([2]) # 4x4 mul 1x1 its ok
+print(arr1 * arr4)
+```
+
+
 
 ​	
 
