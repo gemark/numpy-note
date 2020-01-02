@@ -8,7 +8,7 @@
 
    下载社区版
 
-   ![安装文件](assets/vs_community__1169922471.1572828612.exe)
+   [安装文件](assets/vs_community__1169922471.1572828612.exe)
 
 2. 安装scrapy的python第三方包
 
@@ -115,4 +115,80 @@ class HomepageSpider(scrapy.Spider):
 互联网的访问机制（HTTP）
 
 ![http-request-response](assets/http-request-response.png)
+
+
+
+# scrapy-splash
+
+确保我们的虚拟机已经安装与设置已经完成
+
+
+
+确保`scrapy-splash`包已安装（python -m pip install scrapy-splash）
+
+
+
+在启动虚拟机前，我们需要设置虚拟机的与真实主机之间的共享文件夹
+
+![image-20200102171804892](assets/image-20200102171804892.png)
+
+![image-20200102171819652](assets/image-20200102171819652.png)
+
+![image-20200102171836964](assets/image-20200102171836964.png)
+
+
+
+## 添加共享目录
+
+为什么添加，主要是将我们拷贝的scrapinghub-splash.tar文件可以从虚拟机外面读取到
+
+我共享的目录是D盘的根目录，根目录中存放着scrapinghub-splash.tar文件
+
+然后我们启动虚拟机后，我们cd /到系统根目录下，然后cd CPAN，也就是我们只当的共享目录
+
+然后执行：
+
+```shell
+docker load < ./scrapinghub-splash.tar
+# 直到出现sha256 ..... 一串hash码，通常表明载入成功
+
+docker image ls
+# 如果出现了'scrapinghub/splash'等信息，表明镜像载入到了docker
+
+docker run -p 8050:8050 scrapinghub/splash
+# 启动镜像
+```
+
+通过ifconfig | more来查看虚拟机网卡信息
+
+主要是需要知道eth1的inte adder为多少，通常可能是`192.168.99.100`，也有可能是局域网分配到的ip，这种就需要查看局域网的ip规则，例如我们教室的局域网ip分配到虚拟机上的是：`172.18.33.14`
+
+
+
+如何测试是否启动成功
+
+![image-20200102173417678](assets/image-20200102173417678.png)
+
+![image-20200102173442000](assets/image-20200102173442000.png)
+
+
+
+## 配置settings.py
+
+```python
+SPIDER_MIDDLEWARES = {
+    'scrapy_splash.SplashDeduplicateArgsMiddleware': 100,
+}
+
+DOWNLOADER_MIDDLEWARES = {
+    'scrapy_splash.SplashCookiesMiddleware': 723,
+    'scrapy_splash.SplashMiddleware': 725,
+    'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810
+}
+
+SPLASH_URL = 'http://localhost:8050'
+
+DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'
+HTTPCACHE_STORAGE = 'scrapy_splash.SplashAwareFSCacheStorage'
+```
 
